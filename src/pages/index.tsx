@@ -65,10 +65,8 @@ export default function Home() {
       refetchNFTs();
     }
   };
-  console.log(NFTs, collectionNFTs);
   const displayedNFTs = useMemo(() => {
     let nfts = fetchForCollection ? collectionNFTs?.nfts : NFTs;
-
     if (filterByFloorPrice) {
       nfts = nfts
         ?.filter((nft) => nft.contractMetadata.openSea.floorPrice > 0)
@@ -78,11 +76,9 @@ export default function Home() {
             a.contractMetadata.openSea.floorPrice
         );
     }
-
     return nfts;
   }, [fetchForCollection, collectionNFTs, NFTs, filterByFloorPrice]);
 
-  const isLoading = fetchForCollection ? collectionNFTsLoading : NFTsLoading;
   const error = fetchForCollection ? collectionNFTsError : NFTsError;
 
   return (
